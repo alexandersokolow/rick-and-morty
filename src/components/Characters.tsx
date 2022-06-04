@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useModels from '../hooks/useModels';
 import classnames from 'classnames';
 import BeatLoader from "react-spinners/BeatLoader";
@@ -11,27 +11,32 @@ interface Location {
 }
 
 interface Character {
+  id: string;
   name: string;
   species: string;
   location: Location;
   origin: Location;
 }
 
-const mapCharacter = (character: Character) => {
+const mapCharacter = (character: Character, navigate: Function) => {
+  const path = "/character/" + character.id;
   return (
     <div className={styles.row}>
       <div className={styles.column}>{character.name}</div>
       <div className={styles.column}>{character.species}</div>
       <div className={styles.column}>{character.origin.name}</div>
       <div className={styles.column}>{character.location.name}</div>
-      <div className={classnames(styles.column, styles.buttons)}><button className={styles.button}>View</button></div>
+      <div className={classnames(styles.column, styles.buttons)}>
+        <button className={styles.button} onClick={() => navigate(path)}>View</button>
+      </div>
     </div>
   );
 }
 
 const Characters = () => {
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
-  const { loading, error, data } = useModels(page, "characters");
+  const { loading, data } = useModels(page, "characters");
   const characters = data?.characters?.results || [];
   const maxCount = data?.characters?.info?.count || 0;
   const countStart = (20*(page-1));
@@ -59,7 +64,7 @@ const Characters = () => {
             <div className={styles.column}>Location</div>
             <div className={classnames(styles.column, styles.buttons)}>Actions</div>
           </div>
-          { characters.map(mapCharacter)}
+          { characters.map((character: Character) => mapCharacter(character, navigate))}
           <div className={styles.footer}>
             <div>Showing <b>{countStart}</b>-<b>{countEnd}</b> of <b>{maxCount}</b></div>
             <div>
