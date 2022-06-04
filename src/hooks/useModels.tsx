@@ -1,9 +1,11 @@
 import { gql, useQuery } from '@apollo/client';
 
-const useCharacters = (page: number) => {
+type modelType = "characters" | "locations" | "episodes";
+
+const useModels = (page: number, model: modelType) => {
   const query = gql`
     query {
-      characters(page: ${page || 1}) {
+      ${model}(page: ${page || 1}) {
         info {
           count
         }
@@ -17,4 +19,4 @@ const useCharacters = (page: number) => {
   return { loading, error, data };
 };
 
-export default useCharacters;
+export default useModels;
