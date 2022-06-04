@@ -1,4 +1,3 @@
-import React from "react";
 import "./Boilerplate.css";
 import useCharacters from './hooks/useCharacters';
 
