@@ -2,9 +2,16 @@ import { Link, useParams } from "react-router-dom";
 import useModel from '../hooks/useModel';
 import BeatLoader from "react-spinners/BeatLoader";
 
+import EpisodeMini from "./EpisodeMini";
+
 import styles from "../styles/SingleView.module.css";
 
 interface Location {
+  name: string;
+}
+
+interface Episode {
+  id: string;
   name: string;
 }
 
@@ -17,6 +24,12 @@ interface Character {
   location?: Location;
   origin?: Location;
   image?: string;
+  episode?: Episode[];
+}
+
+const mapEpisode = (episode: Episode) => {
+  const path = "/episode/" + episode.id;
+  return <Link to={path}><div className={styles.listRow}>{episode.name} ({episode.id})</div></Link>;
 }
 
 const CharacterView = () => {
@@ -28,7 +41,7 @@ const CharacterView = () => {
   return (
     <div className={styles.container}>
       <div className={styles.back}>
-        <Link to="/characters">go back</Link>
+        <Link to="/characters">Character List</Link>
       </div>
       <h1>Character</h1>
       { !!error ? (<div className={styles.error}>Could not fetch the character</div>)
@@ -38,7 +51,7 @@ const CharacterView = () => {
         </div>
         ) : (
         <div className={styles.table}>
-          { character.image && <img src={character.image} alt="" /> }
+          { character.image && <img className={styles.image} src={character.image} alt="" /> }
           <div className={styles.row}><b>Name: </b>{character.name}</div>
           <div className={styles.row}><b>Status: </b>{character.status}</div>
           <div className={styles.row}><b>Type: </b>{character.type}</div>
@@ -46,6 +59,10 @@ const CharacterView = () => {
           <div className={styles.row}><b>Species: </b>{character.species}</div>
           <div className={styles.row}><b>Location: </b>{character.location?.name}</div>
           <div className={styles.row}><b>Origin: </b>{character.origin?.name}</div>
+          <div className={styles.row}>
+            <b>Episodes: </b><br/>
+            { character?.episode?.map(mapEpisode) }
+          </div>
         </div>
       )}
     </div>

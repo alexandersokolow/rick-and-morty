@@ -42,7 +42,7 @@ const Locations = () => {
   return (
     <div className={styles.container}>
       <div className={styles.back}>
-        <Link to="/">go back</Link>
+        <Link to="/">Go Back To Homepage</Link>
       </div>
       <h1>Locations</h1>
       { loading ? (

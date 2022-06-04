@@ -4,10 +4,21 @@ import BeatLoader from "react-spinners/BeatLoader";
 
 import styles from "../styles/SingleView.module.css";
 
+interface Character {
+  id: string;
+  name: string;
+}
+
 interface Location {
   name?: string;
   type?: string;
   dimension?: string;
+  residents?: Character[];
+}
+
+const mapCharacter = (character: Character) => {
+  const path = "/character/" + character.id;
+  return <Link to={path}><div className={styles.listRow}>{character.name}</div></Link>;
 }
 
 const LocationView = () => {
@@ -19,7 +30,7 @@ const LocationView = () => {
   return (
     <div className={styles.container}>
       <div className={styles.back}>
-        <Link to="/locations">go back</Link>
+        <Link to="/locations">Location List</Link>
       </div>
       <h1>Location</h1>
       { !!error ? (<div className={styles.error}>Could not fetch the location</div>)
@@ -32,6 +43,10 @@ const LocationView = () => {
           <div className={styles.row}><b>Name: </b>{location.name}</div>
           <div className={styles.row}><b>Type: </b>{location.type}</div>
           <div className={styles.row}><b>Dimension: </b>{location.dimension}</div>
+          <div className={styles.row}>
+            <b>Residents: </b><br/>
+            { location?.residents?.map(mapCharacter) }
+          </div>
         </div>
       )}
     </div>

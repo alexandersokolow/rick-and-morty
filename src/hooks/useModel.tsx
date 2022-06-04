@@ -3,9 +3,9 @@ import { gql, useQuery } from '@apollo/client';
 type modelType = "character" | "location" | "episode";
 
 const schemas = {
-  character: "name\nstatus\nspecies\ntype\ngender\norigin{name}\nlocation{name}\nimage",
-  location: "name\ntype\ndimension",
-  episode: "name\nair_date\nepisode",
+  character: "name\nstatus\nspecies\ntype\ngender\norigin{name}\nlocation{name}\nimage\nepisode{id, name}",
+  location: "name\ntype\ndimension\nresidents{id, name}",
+  episode: "name\nair_date\nepisode\ncharacters{id, name}",
 }
 
 const buildQuery = (id: string, model: modelType) => {

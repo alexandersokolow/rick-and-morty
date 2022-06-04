@@ -4,10 +4,21 @@ import BeatLoader from "react-spinners/BeatLoader";
 
 import styles from "../styles/SingleView.module.css";
 
+interface Character {
+  id: string;
+  name: string;
+}
+
 interface Episode {
   name: string;
   air_date: string;
   episode: string;
+  characters: Character[];
+}
+
+const mapCharacter = (character: Character) => {
+  const path = "/character/" + character.id;
+  return <Link to={path}><div className={styles.listRow}>{character.name}</div></Link>;
 }
 
 const EpisodeView = () => {
@@ -19,7 +30,7 @@ const EpisodeView = () => {
   return (
     <div className={styles.container}>
       <div className={styles.back}>
-        <Link to="/episodes">go back</Link>
+        <Link to="/episodes">Episode List</Link>
       </div>
       <h1>Episode</h1>
       { !!error ? (<div className={styles.error}>Could not fetch the episode</div>)
@@ -32,6 +43,10 @@ const EpisodeView = () => {
           <div className={styles.row}><b>Name: </b>{episode.name}</div>
           <div className={styles.row}><b>Air Date: </b>{episode.air_date}</div>
           <div className={styles.row}><b>Episode: </b>{episode.episode}</div>
+          <div className={styles.row}>
+            <b>Residents: </b><br/>
+            { episode?.characters?.map(mapCharacter) }
+          </div>
         </div>
       )}
     </div>

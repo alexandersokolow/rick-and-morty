@@ -42,7 +42,7 @@ const Episodes = () => {
   return (
     <div className={styles.container}>
       <div className={styles.back}>
-        <Link to="/">go back</Link>
+        <Link to="/">Go Back To Homepage</Link>
       </div>
       <h1>Episodes</h1>
       { loading ? (
