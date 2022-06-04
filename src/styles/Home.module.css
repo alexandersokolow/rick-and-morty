@@ -10,5 +10,9 @@
 .link {
   font-size: 20px;
   margin-bottom: 10px;
+}
 
+.logo {
+  height: 400px;
+  width: auto;
 }
