@@ -1,11 +1,18 @@
-import React from "react";
-import "./App.css";
-import { List } from "./components/List";
+import Home from "./components/Home";
+import Characters from "./components/Characters";
+import Locations from "./components/Locations";
+import Episodes from "./components/Episodes";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export const App = () => {
   return (
-    <div>
-      <List model="characters"/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="characters" element={<Characters />} />
+        <Route path="locations" element={<Locations />} />
+        <Route path="episodes" element={<Episodes />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
