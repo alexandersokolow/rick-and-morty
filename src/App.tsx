@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import { Boilerplate } from "./Boilerplate";
+import { List } from "./components/List";
 
 export const App = () => {
   return (
     <div>
-      <Boilerplate />
+      <List model="characters"/>
     </div>
   );
 };

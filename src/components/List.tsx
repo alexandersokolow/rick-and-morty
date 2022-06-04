@@ -1,4 +1,3 @@
-import "./Boilerplate.css";
 import useModels from '../hooks/useModels';
 
 interface Props {
