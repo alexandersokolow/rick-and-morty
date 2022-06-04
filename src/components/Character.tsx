@@ -2,8 +2,6 @@ import { Link, useParams } from "react-router-dom";
 import useModel from '../hooks/useModel';
 import BeatLoader from "react-spinners/BeatLoader";
 
-import EpisodeMini from "./EpisodeMini";
-
 import styles from "../styles/SingleView.module.css";
 
 interface Location {
