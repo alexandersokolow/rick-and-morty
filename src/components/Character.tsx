@@ -38,6 +38,7 @@ const CharacterView = () => {
   const character: Character = data?.character || {};
   const locationPath = "/location/" + character.location?.id;
   const originPath = "/location/" + character.origin?.id;
+  console.log("character: ", character);
 
   return (
     <div className={styles.container}>
@@ -55,7 +56,7 @@ const CharacterView = () => {
           { character.image && <img className={styles.image} src={character.image} alt="" /> }
           <div className={styles.row}><b>Name: </b>{character.name}</div>
           <div className={styles.row}><b>Status: </b>{character.status}</div>
-          <div className={styles.row}><b>Type: </b>{character.type}</div>
+          <div className={styles.row}><b>Type: </b>{character.type || "-"}</div>
           <div className={styles.row}><b>Gender: </b>{character.gender}</div>
           <div className={styles.row}><b>Species: </b>{character.species}</div>
           <div className={styles.row}><b>Location: </b><Link to={locationPath}>{character.location?.name}</Link></div>
