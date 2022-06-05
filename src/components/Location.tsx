@@ -40,9 +40,9 @@ const LocationView = () => {
         </div>
         ) : (
         <div className={styles.table}>
-          <div className={styles.row}><b>Name: </b>{location.name}</div>
-          <div className={styles.row}><b>Type: </b>{location.type}</div>
-          <div className={styles.row}><b>Dimension: </b>{location.dimension}</div>
+          <div className={styles.row}><b>Name: </b>{location.name || "-"}</div>
+          <div className={styles.row}><b>Type: </b>{location.type || "-"}</div>
+          <div className={styles.row}><b>Dimension: </b>{location.dimension || "-"}</div>
           <div className={styles.row}>
             <b>Residents: </b><br/>
             { location?.residents?.map(mapCharacter) }

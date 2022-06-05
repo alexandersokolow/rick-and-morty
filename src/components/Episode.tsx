@@ -40,9 +40,9 @@ const EpisodeView = () => {
         </div>
         ) : (
         <div className={styles.table}>
-          <div className={styles.row}><b>Name: </b>{episode.name}</div>
-          <div className={styles.row}><b>Air Date: </b>{episode.air_date}</div>
-          <div className={styles.row}><b>Episode: </b>{episode.episode}</div>
+          <div className={styles.row}><b>Name: </b>{episode.name || "-"}</div>
+          <div className={styles.row}><b>Air Date: </b>{episode.air_date || "-"}</div>
+          <div className={styles.row}><b>Episode: </b>{episode.episode || "-"}</div>
           <div className={styles.row}>
             <b>Residents: </b><br/>
             { episode?.characters?.map(mapCharacter) }

@@ -54,11 +54,11 @@ const CharacterView = () => {
         ) : (
         <div className={styles.table}>
           { character.image && <img className={styles.image} src={character.image} alt="" /> }
-          <div className={styles.row}><b>Name: </b>{character.name}</div>
-          <div className={styles.row}><b>Status: </b>{character.status}</div>
+          <div className={styles.row}><b>Name: </b>{character.name || "-"}</div>
+          <div className={styles.row}><b>Status: </b>{character.status || "-"}</div>
           <div className={styles.row}><b>Type: </b>{character.type || "-"}</div>
-          <div className={styles.row}><b>Gender: </b>{character.gender}</div>
-          <div className={styles.row}><b>Species: </b>{character.species}</div>
+          <div className={styles.row}><b>Gender: </b>{character.gender || "-"}</div>
+          <div className={styles.row}><b>Species: </b>{character.species || "-"}</div>
           <div className={styles.row}><b>Location: </b><Link to={locationPath}>{character.location?.name}</Link></div>
           <div className={styles.row}><b>Origin: </b><Link to={originPath}>{character.origin?.name}</Link></div>
           <div className={styles.row}>
