@@ -5,6 +5,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import styles from "../styles/SingleView.module.css";
 
 interface Location {
+  id: string;
   name: string;
 }
 
@@ -35,6 +36,8 @@ const CharacterView = () => {
   const id = params?.id || "1";
   const { loading, error, data } = useModel(id, "character");
   const character: Character = data?.character || {};
+  const locationPath = "/location/" + character.location?.id;
+  const originPath = "/location/" + character.origin?.id;
 
   return (
     <div className={styles.container}>
@@ -55,8 +58,8 @@ const CharacterView = () => {
           <div className={styles.row}><b>Type: </b>{character.type}</div>
           <div className={styles.row}><b>Gender: </b>{character.gender}</div>
           <div className={styles.row}><b>Species: </b>{character.species}</div>
-          <div className={styles.row}><b>Location: </b>{character.location?.name}</div>
-          <div className={styles.row}><b>Origin: </b>{character.origin?.name}</div>
+          <div className={styles.row}><b>Location: </b><Link to={locationPath}>{character.location?.name}</Link></div>
+          <div className={styles.row}><b>Origin: </b><Link to={originPath}>{character.origin?.name}</Link></div>
           <div className={styles.row}>
             <b>Episodes: </b><br/>
             { character?.episode?.map(mapEpisode) }

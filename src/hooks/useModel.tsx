@@ -3,7 +3,7 @@ import { gql, useQuery } from '@apollo/client';
 type modelType = "character" | "location" | "episode";
 
 const schemas = {
-  character: "name\nstatus\nspecies\ntype\ngender\norigin{name}\nlocation{name}\nimage\nepisode{id, name}",
+  character: "name\nstatus\nspecies\ntype\ngender\norigin{id, name}\nlocation{id, name}\nimage\nepisode{id, name}",
   location: "name\ntype\ndimension\nresidents{id, name}",
   episode: "name\nair_date\nepisode\ncharacters{id, name}",
 }
